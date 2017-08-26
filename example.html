@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
         <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="dist/bootstrap-dialogs-neimark.min.js"></script>
+        <script type="text/javascript" src="dist/bootstrap-dialogs-neimark.js"></script>
     </head>
     <body>
         <header class="page-header">
@@ -37,7 +37,7 @@
                     });
                 });
                 $('#confirmButton').on('click', function () {
-                    myDialog.confirm('Your confirm title', 'Your confirm message to user', function (err, result) {
+                    myDialog.confirm('Your confirm title', 'Your confirm message to user', function (result) {
                         appendLog('confirm callback! result: ' + result);
                     });
                 });
@@ -50,7 +50,7 @@
                         required: true
                     };
 
-                    myDialog.prompt('Your prompt title', 'Your prompt message to user', function (err, result) {
+                    myDialog.prompt('Your prompt title', 'Your prompt message to user', function (result) {
                         appendLog('prompt callback! result: ' + result);
                     }, promptOptions);
                 });

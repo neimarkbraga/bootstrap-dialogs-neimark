@@ -102,7 +102,7 @@ function BootstrapDialog(options) {
         $(myModal.footer)
             .append(component.ok_button);
         myModal.onHide = function () {
-            _callback(null);
+            _callback();
         };
     };
     this.confirm = function (title, message, callback) {
@@ -142,7 +142,7 @@ function BootstrapDialog(options) {
             .append(component.no_button)
             .append(component.yes_button);
         myModal.onHide = function () {
-            _callback(null, confirmResult);
+            _callback(confirmResult);
         };
     };
     this.prompt = function (title, message, callback, options) {
@@ -164,6 +164,7 @@ function BootstrapDialog(options) {
         });
         var component = {
             paragraph: document.createElement('p'),
+            cancel_button: document.createElement('button'),
             ok_button: document.createElement('button'),
             label: document.createElement('span'),
             input: document.createElement('input'),
@@ -187,6 +188,14 @@ function BootstrapDialog(options) {
             .attr('class', 'input-group')
             .append(component.label)
             .append(component.input);
+        $(component.cancel_button)
+            .attr('type', 'button')
+            .attr('class', 'btn btn-default')
+            .html('CANCEL')
+            .on('click', function () {
+                promptResult = undefined;
+                $(myModal.modal).modal('hide');
+            });
         $(component.ok_button)
             .attr('type', 'submit')
             .attr('class', 'btn ' + myOptions.buttonClass)
@@ -204,12 +213,15 @@ function BootstrapDialog(options) {
         $(myModal.body)
             .append(component.paragraph)
             .append(component.input_group);
+        if(!promptOptions.required)
+            $(myModal.footer)
+                .append(component.cancel_button);
         $(myModal.footer)
             .append(component.ok_button);
         $(myModal.dialog)
             .append(component.form);
         myModal.onHide = function () {
-            _callback(null, promptResult);
+            _callback(promptResult);
         };
     };
 }
