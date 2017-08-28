@@ -9,6 +9,8 @@ Dependencies:
 * popper.js@^1.11.0
 * bootstrap@^4.0.0-beta
 
+<br /><br />
+Demo: (demo.html)
 
 ***
 
