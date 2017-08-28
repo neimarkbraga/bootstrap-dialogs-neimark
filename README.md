@@ -10,7 +10,7 @@ Dependencies:
 * bootstrap@^4.0.0-beta
 
 <br /><br />
-Demo: (demo.html)
+Demo: (https://neimarkbraga.github.io/bootstrap-dialogs-neimark/demo.html)
 
 ***
 
