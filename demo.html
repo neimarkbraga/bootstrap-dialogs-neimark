@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bootstrap Dialogs Neimark v1.1.0 Demo</title>
+        <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css" />
+        <script type="application/javascript" src="assets/jquery/dist/jquery.min.js"></script>
+        <script type="application/javascript" src="assets/popper.js/dist/umd/popper.min.js"></script>
+        <script type="application/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="dist/bootstrap-dialogs-neimark.min.js"></script>
+
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    </head>
+    <body>
+        <header class="container pt-4 pb-4">
+            <h1>Bootstrap Dialogs Neimark v1.1.0 Demo</h1>
+        </header>
+        <div class="container">
+            <p>Dependencies: </p>
+            <ul>
+                <li>jquery @ ^3.2.1</li>
+                <li>popper.js @ ^1.11.0</li>
+                <li>bootstrap @ ^4.0.0-beta</li>
+            </ul>
+
+            <div class="pt-4">
+                <h4>Initialization: </h4>
+                <pre class="prettyprint"><code>    var myDialog = new BootstrapDialog({
+        buttonClass: 'btn-primary',
+        dialogTitleTag: 'h4',
+        dialogSize: '',
+        animation: true
+    });</code></pre>
+            </div>
+
+            <div class="pt-4">
+                <h4>Alert Dialog Code: </h4>
+                <pre class="prettyprint"><code>    myDialog.alert('Alert Demo', 'Some message', function () {
+        console.log('Alert Callback Executed');
+    });</code></pre>
+                <button id="AlertButton" type="button" class="btn btn-primary mb-2">Alert Demo</button>
+            </div>
+
+            <div class="pt-4">
+                <h4>Confirm Dialog Code: </h4>
+                <pre class="prettyprint"><code>    myDialog.confirm('Confirm Demo', 'Some message', function (result) {
+        console.log('Confirm Callback Executed. Result: ' + result);
+    });</code></pre>
+                <button id="ConfirmButton" type="button" class="btn btn-primary mb-2">Confirm Demo</button>
+            </div>
+
+            <div class="pt-4">
+                <h4>Prompt Dialog Code: </h4>
+                <pre class="prettyprint"><code>    var promptOptions = {
+        label: 'Name',
+        type: 'text',
+        placeholder: 'Enter your name',
+        value: '',
+        required: false
+    };
+
+    myDialog.prompt('Prompt Demo', 'Some message', function (result) {
+        console.log('Prompt Callback Executed. Result: ' + result);
+    }, promptOptions);</code></pre>
+                <button id="PromptButton" type="button" class="btn btn-primary mb-2">Prompt Demo</button>
+            </div>
+        </div>
+        <div class="pb-5"></div>
+        <script>
+            $(document).ready(function () {
+                var myDialog = new BootstrapDialog({
+                    buttonClass: 'btn-primary',
+                    dialogTitleTag: 'h4',
+                    dialogSize: '',
+                    animation: true
+                });
+
+
+                $('#AlertButton').on('click', function () {
+                    myDialog.alert('Alert Demo', 'Some message', function () {
+                        console.log('Alert Callback Executed');
+                    });
+                });
+                $('#ConfirmButton').on('click', function () {
+                    myDialog.confirm('Confirm Demo', 'Some message', function (result) {
+                        console.log('Confirm Callback Executed. Result: ' + result);
+                    });
+                });
+                $('#PromptButton').on('click', function () {
+                    var promptOptions = {
+                        label: 'Name',
+                        type: 'text',
+                        placeholder: 'Enter your name',
+                        value: '',
+                        required: false
+                    };
+
+                    myDialog.prompt('Prompt Demo', 'Some message', function (result) {
+                        console.log('Prompt Callback Executed. Result: ' + result);
+                    }, promptOptions);
+                });
+            });
+        </script>
+    </body>
+</html>

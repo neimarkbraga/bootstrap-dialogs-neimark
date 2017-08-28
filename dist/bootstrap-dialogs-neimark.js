@@ -104,6 +104,9 @@ function BootstrapDialog(options) {
         myModal.onHide = function () {
             _callback();
         };
+        myModal.onShown = function () {
+            $(component.ok_button).focus();
+        };
     };
     this.confirm = function (title, message, callback) {
         var _title = title || '';
@@ -143,6 +146,9 @@ function BootstrapDialog(options) {
             .append(component.yes_button);
         myModal.onHide = function () {
             _callback(confirmResult);
+        };
+        myModal.onShown = function () {
+            $(component.yes_button).focus();
         };
     };
     this.prompt = function (title, message, callback, options) {
@@ -222,6 +228,9 @@ function BootstrapDialog(options) {
             .append(component.form);
         myModal.onHide = function () {
             _callback(promptResult);
+        };
+        myModal.onShown = function () {
+            $(component.ok_button).focus();
         };
     };
 }

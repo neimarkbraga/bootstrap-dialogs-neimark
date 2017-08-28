@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/neimarkbraga/bootstrap-dialogs-neimark#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "jquery": "^3.2.1"
+    "bootstrap": "^4.0.0-beta",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.11.0"
   }
 }
