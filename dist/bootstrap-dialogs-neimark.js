@@ -1,11 +1,13 @@
 /*
     title: Bootstrap Dialogs By Neimark
     description: A js plugin to display dialogs like javascript's alert, confirm, and prompt (bootstrap dependent)
-    date: 08-05-2017
+    date: 09-09-2017
+    version: 1.2.0
 */
 function BootstrapDialog(options) {
     if(!options) options = {};
     var myOptions = {
+        preloaderClass: options.preloaderClass || '',
         buttonClass: options.buttonClass || 'btn-default',
         dialogTitleTag: options.dialogTitleTag || 'h4',
         dialogSize: options.dialogSize || '',
@@ -233,4 +235,44 @@ function BootstrapDialog(options) {
             $(component.ok_button).focus();
         };
     };
+    this.preloader = function (label) {
+        label = label || 'Loading...';
+        var myModal = new ModalObject();
+        myModal.header.remove();
+        myModal.footer.remove();
+        var component = {
+            paragraph: document.createElement('p'),
+            progress: document.createElement('div'),
+            progress_bar: document.createElement('div')
+        };
+
+        $(component.progress_bar)
+            .attr('class','progress-bar progress-bar-striped progress-bar-animated ' + myOptions.preloaderClass)
+            .attr('role', 'progressbar')
+            .attr('aria-valuenow', '100')
+            .attr('aria-valuemin', '0')
+            .attr('aria-valuemax', '100')
+            .css('width', '100%');
+
+        $(component.progress)
+            .attr('class','progress')
+            .append(component.progress_bar);
+
+        $(component.paragraph)
+            .css('margin', '0')
+            .css('padding', '0')
+            .html(label);
+
+        $(myModal.body)
+            .append(component.paragraph)
+            .append('<hr />')
+            .append(component.progress);
+
+        this.changeLabel = function (label) {
+            $(component.paragraph).html(label);
+        };
+        this.destroy = function () {
+            $(myModal.modal).modal('hide');
+        };
+    }
 }

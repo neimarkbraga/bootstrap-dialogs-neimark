@@ -2,17 +2,17 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Bootstrap Dialogs Neimark v1.1.0 Demo</title>
+        <title>Bootstrap Dialogs Neimark v1.2.0 Demo</title>
         <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css" />
         <script type="application/javascript" src="assets/jquery/dist/jquery.min.js"></script>
         <script type="application/javascript" src="assets/popper.js/dist/umd/popper.min.js"></script>
         <script type="application/javascript" src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="application/javascript" src="dist/bootstrap-dialogs-neimark.js"></script>
+        <script type="application/javascript" src="dist/bootstrap-dialogs-neimark.min.js"></script>
         <script type="application/javascript" src="assets/google-code-prettify/run_prettify.js"></script>
     </head>
     <body>
         <header class="container pt-4 pb-4">
-            <h1>Bootstrap Dialogs Neimark v1.1.0 Demo</h1>
+            <h1>Bootstrap Dialogs Neimark v1.2.0 Demo</h1>
         </header>
         <div class="container">
             <p>Dependencies: </p>
@@ -25,6 +25,7 @@
             <div class="pt-4">
                 <h4>Initialization: </h4>
                 <pre class="prettyprint"><code>    var myDialog = new BootstrapDialog({
+        preloaderClass: 'bg-dark',
         buttonClass: 'btn-primary',
         dialogTitleTag: 'h4',
         dialogSize: '',
@@ -63,11 +64,25 @@
     }, promptOptions);</code></pre>
                 <button id="PromptButton" type="button" class="btn btn-primary mb-2">Prompt Demo</button>
             </div>
+
+            <div class="pt-4">
+                <h4>Preloader Dialog Code: </h4>
+                <pre class="prettyprint"><code>    var loader = new myDialog.preloader();
+
+    setTimeout(function () {
+        loader.changeLabel('Hello World!');
+        setTimeout(function () {
+            loader.destroy();
+        }, 2000);
+    }, 2000);</code></pre>
+                <button id="PreloaderButton" type="button" class="btn btn-primary mb-2">Preloader Demo</button>
+            </div>
         </div>
         <div class="pb-5"></div>
         <script>
             $(document).ready(function () {
                 var myDialog = new BootstrapDialog({
+                    preloaderClass: 'bg-dark',
                     buttonClass: 'btn-primary',
                     dialogTitleTag: 'h4',
                     dialogSize: '',
@@ -97,6 +112,16 @@
                     myDialog.prompt('Prompt Demo', 'Some message', function (result) {
                         console.log('Prompt Callback Executed. Result: ' + result);
                     }, promptOptions);
+                });
+
+                $('#PreloaderButton').on('click', function () {
+                    var loader = new myDialog.preloader();
+                    setTimeout(function () {
+                        loader.changeLabel('Hello World!');
+                        setTimeout(function () {
+                            loader.destroy();
+                        }, 2000);
+                    }, 2000);
                 });
             });
         </script>
