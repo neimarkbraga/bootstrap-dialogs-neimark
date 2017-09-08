@@ -1,7 +1,8 @@
-# bootstrap-dialogs-neimark.js v1.1.0
+# bootstrap-dialogs-neimark.js v1.2.0
 A js plugin that displays dialog similar to javascript's alert, confirm, and prompt.
 Dialogs are displayed in form of modal of Bootsrap, which means this plugin is dependent to Bootsrap.
-<br /><br />
+<br />
+<br />
 download the latest commit of bootstrap-dialogs-neimark.js (https://github.com/neimarkbraga/bootstrap-dialogs-neimark/archive/master.zip)
 <br /><br />
 Dependencies: 
@@ -9,8 +10,11 @@ Dependencies:
 * popper.js@^1.11.0
 * bootstrap@^4.0.0-beta
 
-<br /><br />
+<br />
+<br />
 Demo: (https://neimarkbraga.github.io/bootstrap-dialogs-neimark/demo.html)
+v1.2.0 new feature: preloader
+
 
 ***
 
@@ -39,6 +43,7 @@ You can set some options to dialogs
 ```javascript
 $(document).ready(function () {
     var myDialog = new BootstrapDialog({ //values below are the default values.
+        preloaderClass: '', //class for preloader progress bar, for changing color. ex.: 'bg-dark'
         buttonClass: 'btn-default', //the button to be used on dialogs
         dialogTitleTag: 'h4', //the tag name of dialogs' title
         dialogSize: '', //class for modal-dialog ex. 'modal-lg' & 'modal-sm'. empty is medium.
@@ -119,3 +124,24 @@ $(document).ready(function () {
 * **callback** (*Function*) - callback function. Parameters:
     * **result** (*String*) - the value of user's input
 * **options** (*String*) - options to customize the prompt dialog. The code above is the example of options
+
+
+### Preloader Class
+Here is an example code to display a preloader dialog:<br />
+```javascript
+    var loader = new myDialog.preloader();
+
+    setTimeout(function () { //simulate a process
+        loader.changeLabel('Hello World!'); //change label
+        setTimeout(function () { //simulate a process again
+            loader.destroy(); //destroy instance; Close
+        }, 2000);
+    }, 2000);
+```
+
+### Constructor parameter of preloader
+* **label** (*String*) - label to display on preloader
+
+### Methods of preloader instance
+* **changeLabel** - changes the displayed label. parameters:
+    * **label** (*String*) - value to replace.
