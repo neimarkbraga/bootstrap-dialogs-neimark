@@ -238,12 +238,18 @@ function BootstrapDialog(options) {
     this.preloader = function (label) {
         label = label || 'Loading...';
         var myModal = new ModalObject();
-        myModal.header.remove();
-        myModal.footer.remove();
+        var shown = false;
+        var destroyOnShown = false;
         var component = {
             paragraph: document.createElement('p'),
             progress: document.createElement('div'),
             progress_bar: document.createElement('div')
+        };
+        myModal.header.remove();
+        myModal.footer.remove();
+        myModal.onShown = function () {
+            shown = true;
+            if(destroyOnShown) $(myModal.modal).modal('hide');
         };
 
         $(component.progress_bar)
@@ -272,7 +278,8 @@ function BootstrapDialog(options) {
             $(component.paragraph).html(label);
         };
         this.destroy = function () {
-            $(myModal.modal).modal('hide');
+            if(shown) $(myModal.modal).modal('hide');
+            else destroyOnShown = true;
         };
     }
 }
