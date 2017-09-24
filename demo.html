@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Bootstrap Dialogs Neimark v1.2.0 Demo</title>
+        <title>Bootstrap Dialogs Neimark v1.2.1 Demo</title>
         <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css" />
         <script type="application/javascript" src="assets/jquery/dist/jquery.min.js"></script>
         <script type="application/javascript" src="assets/popper.js/dist/umd/popper.min.js"></script>
@@ -12,7 +12,7 @@
     </head>
     <body>
         <header class="container pt-4 pb-4">
-            <h1>Bootstrap Dialogs Neimark v1.2.0 Demo</h1>
+            <h1>Bootstrap Dialogs Neimark v1.2.1 Demo</h1>
         </header>
         <div class="container">
             <p>Dependencies: </p>
@@ -56,6 +56,7 @@
         type: 'text',
         placeholder: 'Enter your name',
         value: '',
+        list: 'myList',
         required: false
     };
 
@@ -79,6 +80,12 @@
             </div>
         </div>
         <div class="pb-5"></div>
+        <datalist id="myList">
+            <option>test1</option>
+            <option>test2</option>
+            <option>test3</option>
+            <option>test4</option>
+        </datalist>
         <script>
             $(document).ready(function () {
                 var myDialog = new BootstrapDialog({
@@ -106,6 +113,7 @@
                         type: 'text',
                         placeholder: 'Enter your name',
                         value: '',
+                        list: 'myList',
                         required: false
                     };
 

@@ -1,8 +1,8 @@
 /*
     title: Bootstrap Dialogs By Neimark
     description: A js plugin to display dialogs like javascript's alert, confirm, and prompt (bootstrap dependent)
-    date: 09-09-2017
-    version: 1.2.0
+    date: 09-24-2017
+    version: 1.2.1
 */
 function BootstrapDialog(options) {
     if(!options) options = {};
@@ -160,7 +160,8 @@ function BootstrapDialog(options) {
             type: options.type || 'text',
             placeholder: options.placeholder || '',
             value: options.value || '',
-            required: (options.required === undefined)? true : options.required
+            required: (options.required === undefined)? true : options.required,
+            list: options.list
         };
         var _title = title || '';
         var _message = message || '';
@@ -192,6 +193,9 @@ function BootstrapDialog(options) {
         if(promptOptions.required)
             $(component.input)
                 .attr('required', 'required');
+        if(options.list)
+            $(component.input)
+                .attr('list', options.list);
         $(component.input_group)
             .attr('class', 'input-group')
             .append(component.label)
